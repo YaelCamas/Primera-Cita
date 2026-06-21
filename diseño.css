@@ -1,0 +1,600 @@
+/* ==========================================================================
+   VARIABLES DE DISEÑO ULTRA PREMIUM (ALTA DEFINICIÓN)
+   ========================================================================== */
+:root {
+    --bg-deep-space: #050609;
+    --bg-radial-glow: #0d1326;
+    --glass-bg: rgba(10, 14, 26, 0.45);
+    --glass-border: rgba(223, 183, 108, 0.18);
+    
+    /* Paleta de Colores Exclusiva: Negro, Azul Eléctrico y Oro */
+    --blue-neon: #3b82f6;
+    --blue-deep: #1e3a8a;
+    --gold-metallic: #dfb76c;
+    --gold-light: #fbe6ad;
+    
+    /* Tipografía e Interlineado */
+    --font-romantic: 'Dancing Script', cursive;
+    --font-sans: 'Plus Jakarta Sans', sans-serif;
+    --text-primary: #f8fafc;
+    --text-muted: #94a3b8;
+}
+
+/* ==========================================================================
+   RESET Y CONFIGURACIÓN ESTRUCTURAL BASE
+   ========================================================================== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: var(--bg-deep-space);
+    background-image: radial-gradient(circle at 50% 30%, var(--bg-radial-glow) 0%, var(--bg-deep-space) 80%);
+    color: var(--text-primary);
+    font-family: var(--font-sans);
+    overflow-x: hidden;
+    scroll-behavior: smooth;
+    -webkit-font-smoothing: antialiased;
+}
+
+/* Lienzo de Partículas Interactivas en el Fondo */
+#particles {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: -1;
+    pointer-events: none;
+}
+
+.dancing-font {
+    font-family: var(--font-romantic);
+}
+
+/* ==========================================================================
+   SECCIÓN HÉROE (BIENVENIDA DE ALTO IMPACTO)
+   ========================================================================== */
+.hero {
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    position: relative;
+    padding: 0 1.5rem;
+}
+
+.hero-overlay {
+    position: absolute;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background: linear-gradient(to bottom, transparent 60%, var(--bg-deep-space) 100%);
+    z-index: 1;
+}
+
+.hero-content {
+    z-index: 2;
+    animation: smoothFadeInDown 1.8s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.hero-pretitle {
+    font-size: clamp(1rem, 3vw, 1.3rem);
+    color: var(--blue-neon);
+    font-weight: 500;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    margin-bottom: 0.5rem;
+    text-shadow: 0 0 15px rgba(59, 130, 246, 0.4);
+}
+
+.glow-text {
+    font-family: var(--font-romantic);
+    font-size: clamp(4rem, 10vw, 7rem);
+    background: linear-gradient(135deg, var(--gold-light) 0%, var(--gold-metallic) 100%);
+    -webkit-background-clip: text; /* Compatibilidad con navegadores antiguos */
+    background-clip: text;         /* SOLUCIÓN DE COMPATIBILIDAD (Captura image_5e393c.png) */
+    -webkit-text-fill-color: transparent;
+    filter: drop-shadow(0 0 25px rgba(223, 183, 108, 0.45));
+    margin-bottom: 0.8rem;
+    font-weight: 700;
+}
+
+.subtitle {
+    font-size: clamp(0.9rem, 2.5vw, 1.25rem);
+    color: var(--text-muted);
+    letter-spacing: 5px;
+    margin-bottom: 3rem;
+    text-transform: uppercase;
+    font-weight: 300;
+}
+
+/* Insignia de la Fecha con Brillo Metálico */
+.date-badge {
+    display: inline-block;
+    padding: 0.85rem 3rem;
+    border: 1px solid var(--gold-metallic);
+    border-radius: 50px;
+    font-weight: 600;
+    font-size: 1.1rem;
+    color: var(--gold-light);
+    letter-spacing: 2px;
+    background: rgba(13, 19, 38, 0.6);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    box-shadow: 0 0 25px rgba(223, 183, 108, 0.15), inset 0 0 15px rgba(223, 183, 108, 0.1);
+    transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.date-badge:hover {
+    transform: scale(1.05) translateY(-2px);
+    box-shadow: 0 0 35px rgba(223, 183, 108, 0.4);
+    border-color: #fff;
+    background: rgba(223, 183, 108, 0.15);
+}
+
+/* Botón Animado Scroll Down */
+.scroll-down {
+    position: absolute;
+    bottom: 50px;
+    background: transparent;
+    border: none;
+    font-size: 2.2rem;
+    color: var(--gold-metallic);
+    cursor: pointer;
+    z-index: 2;
+    outline: none;
+    animation: floatingBounce 2s infinite ease-in-out;
+    transition: color 0.3s;
+}
+
+.scroll-down:hover {
+    color: var(--blue-neon);
+}
+
+/* ==========================================================================
+   MÓDULOS DE TARJETAS PREMIUM (GLASSMORPHISM)
+   ========================================================================== */
+.container {
+    max-width: 1250px;
+    margin: 0 auto;
+    padding: 7rem 2rem;
+}
+
+.section {
+    opacity: 0;
+    transform: translateY(50px);
+    transition: opacity 1.4s cubic-bezier(0.16, 1, 0.3, 1), transform 1.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.section.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.section-title {
+    font-family: var(--font-romantic);
+    font-size: clamp(3rem, 7vw, 4.5rem);
+    text-align: center;
+    color: var(--gold-metallic);
+    margin-bottom: 1rem;
+    text-shadow: 0 0 15px rgba(223, 183, 108, 0.25);
+}
+
+.section-subtitle {
+    text-align: center;
+    color: var(--text-muted);
+    max-width: 650px;
+    margin: 0 auto 4.5rem auto;
+    font-size: 1.05rem;
+    line-height: 1.6;
+    font-weight: 300;
+}
+
+/* Estilo Base de las Tarjetas de Cristal Esmerilado */
+.card-premium {
+    background: var(--glass-bg);
+    border: 1px solid var(--glass-border);
+    border-radius: 28px;
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    box-shadow: 0 20px 45px rgba(0, 0, 0, 0.45), inset 0 1px 2px rgba(255, 255, 255, 0.05);
+    transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* ==========================================================================
+   SECCIÓN: NUESTRA PRIMERA CITA
+   ========================================================================== */
+.grid-two {
+    display: grid;
+    grid-template-columns: 1.1fr 0.9fr;
+    gap: 3.5rem;
+    align-items: start;
+}
+
+.main-story {
+    padding: 3.5rem;
+    position: relative;
+}
+
+.main-story:hover {
+    border-color: rgba(223, 183, 108, 0.35);
+    transform: translateY(-6px);
+    box-shadow: 0 30px 60px rgba(223, 183, 108, 0.08);
+}
+
+.card-tag {
+    display: inline-block;
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: var(--blue-neon);
+    font-weight: 600;
+    margin-bottom: 1.2rem;
+}
+
+.main-story h3 {
+    color: var(--text-primary);
+    font-size: 2.1rem;
+    margin-bottom: 1.5rem;
+    font-weight: 700;
+}
+
+.main-story p {
+    line-height: 1.9;
+    color: #e2e8f0;
+    font-size: 1.1rem;
+    font-weight: 300;
+}
+
+/* Bloque Especial Spider-Man */
+.spiderman-badge {
+    margin-top: 3rem;
+    padding: 1.5rem;
+    background: linear-gradient(135deg, rgba(239, 68, 68, 0.08) 0%, rgba(30, 58, 138, 0.08) 100%);
+    border-left: 4px solid #ef4444;
+    border-right: 4px solid var(--blue-neon);
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    gap: 1.2rem;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+}
+
+.spider-web {
+    font-size: 2rem;
+    filter: drop-shadow(0 0 8px #ef4444);
+    animation: subtlePulse 2s infinite ease-in-out;
+}
+
+.spiderman-badge p {
+    font-size: 1rem;
+    line-height: 1.5;
+    font-weight: 400;
+    color: #f1f5f9;
+}
+
+/* Contenedor de Lugares (Esphera y Teatro) */
+.places-stack {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}
+
+.place-card {
+    padding: 2.2rem;
+    display: flex;
+    gap: 1.5rem;
+    align-items: flex-start;
+}
+
+.place-card:hover {
+    border-color: rgba(59, 130, 246, 0.3);
+    transform: translateX(8px);
+    background: rgba(13, 22, 46, 0.5);
+}
+
+.place-icon {
+    font-size: 2rem;
+    background: rgba(223, 183, 108, 0.1);
+    width: 55px;
+    height: 55px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 16px;
+    border: 1px solid rgba(223, 183, 108, 0.2);
+    flex-shrink: 0;
+}
+
+.place-info h4 {
+    color: var(--gold-metallic);
+    font-size: 1.35rem;
+    margin-bottom: 0.6rem;
+    font-weight: 600;
+}
+
+.place-info p {
+    font-size: 1rem;
+    line-height: 1.7;
+    color: var(--text-muted);
+    font-weight: 300;
+}
+
+/* ==========================================================================
+   LÍNEA DEL TIEMPO (DETALLES CRONOLÓGICOS)
+   ========================================================================== */
+.timeline {
+    position: relative;
+    max-width: 950px;
+    margin: 0 auto;
+}
+
+.timeline::after {
+    content: '';
+    position: absolute;
+    width: 2px;
+    background: linear-gradient(to bottom, transparent, var(--gold-metallic) 15%, var(--blue-neon) 50%, var(--gold-metallic) 85%, transparent);
+    top: 0; bottom: 0; left: 50%;
+    margin-left: -1px;
+}
+
+.timeline-item {
+    padding: 20px 60px;
+    position: relative;
+    width: 50%;
+}
+
+.timeline-item::after {
+    content: '❤️';
+    position: absolute;
+    right: -14px; top: 38px;
+    z-index: 2;
+    font-size: 1.2rem;
+    filter: drop-shadow(0 0 8px rgba(223,183,108,0.6));
+    transition: transform 0.3s ease;
+}
+
+.timeline-item.right::after { left: -14px; }
+.timeline-item.left { left: 0; }
+.timeline-item.right { left: 50%; }
+
+.timeline-content {
+    padding: 2.5rem;
+    position: relative;
+}
+
+.timeline-item:hover::after {
+    transform: scale(1.3);
+}
+
+.timeline-icon {
+    font-size: 1.8rem;
+    margin-bottom: 1rem;
+}
+
+.timeline-content h4 {
+    color: var(--gold-metallic);
+    font-size: 1.4rem;
+    margin-bottom: 0.8rem;
+    font-weight: 600;
+}
+
+.timeline-content p {
+    color: #cbd5e1;
+    font-size: 1rem;
+    line-height: 1.7;
+    font-weight: 300;
+}
+
+/* ==========================================================================
+   BANDA SONORA ELEGANTE (SPOTIFY WRAPPER)
+   ========================================================================== */
+.spotify-wrapper {
+    max-width: 850px;
+    margin: 0 auto;
+    padding: 3.5rem;
+    text-align: center;
+}
+
+.section-title-alt {
+    font-family: var(--font-romantic);
+    font-size: 3.5rem;
+    color: var(--gold-metallic);
+    margin-bottom: 1rem;
+}
+
+.spotify-wrapper p {
+    color: var(--text-muted);
+    margin-bottom: 2.5rem;
+    font-size: 1.05rem;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+    font-weight: 300;
+}
+
+.spotify-embed-container {
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.65);
+    border: 1px solid rgba(59, 130, 246, 0.25);
+    background: #000;
+}
+
+/* ==========================================================================
+   GALERÍA CINEMÁTICA PREMIUM (AJUSTE DE VIDEO VERTICAL MOVIL)
+   ========================================================================== */
+.gallery-layout {
+    display: flex;
+    flex-direction: column;
+    gap: 3.5rem;
+}
+
+/* Contenedor del Único Video Destacado (Optimizado para formato Celular) */
+.video-container-premium {
+    width: 100%;
+    max-width: 380px; /* Limita el ancho en PC para que mantenga proporción de smartphone */
+    margin: 0 auto;
+    padding: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.video-tag {
+    align-self: center; /* Centrado estético alineado al video vertical */
+    font-size: 0.85rem;
+    color: var(--gold-metallic);
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    margin-bottom: 1.2rem;
+    font-weight: 600;
+}
+
+.video-container-premium video {
+    width: 100%;
+    max-height: 650px; /* Evita que se expanda infinitamente hacia abajo */
+    object-fit: cover; /* Recorta y adapta el video sin deformar ni estirar las manos */
+    border-radius: 24px;
+    border: 1px solid rgba(223, 183, 108, 0.25); /* Destello dorado sutil */
+    box-shadow: 0 20px 50px rgba(0,0,0,0.8);
+    outline: none;
+    background: #000;
+}
+
+.video-description {
+    margin-top: 1.5rem;
+    text-align: center;
+    color: #e2e8f0;
+    font-family: var(--font-romantic);
+    font-size: 1.6rem;
+}
+/* Rejilla Espectacular de 9 Imágenes */
+.gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 2.5rem;
+}
+
+.gallery-item {
+    position: relative;
+    overflow: hidden;
+    height: 420px;
+    padding: 0;
+    cursor: pointer;
+}
+
+.gallery-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.gallery-item:hover img {
+    transform: scale(1.06) rotate(0.5deg);
+}
+
+/* Superposición de Texto Cinemática al Pasar el Mouse */
+.overlay {
+    position: absolute;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background: linear-gradient(to top, rgba(5, 6, 9, 0.95) 0%, rgba(13, 19, 38, 0.4) 60%, transparent 100%);
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    padding: 2.5rem;
+    opacity: 0;
+    transition: opacity 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.gallery-item:hover .overlay {
+    opacity: 1;
+}
+
+.overlay span {
+    color: var(--gold-light);
+    font-weight: 500;
+    font-size: 1.2rem;
+    text-align: center;
+    transform: translateY(25px);
+    transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+    text-shadow: 0 4px 12px rgba(0,0,0,0.6);
+    line-height: 1.5;
+}
+
+.gallery-item:hover .overlay span {
+    transform: translateY(0);
+}
+
+/* ==========================================================================
+   PIE DE PÁGINA (FOOTER CINEMÁTICO)
+   ========================================================================== */
+footer {
+    text-align: center;
+    padding: 6rem 2rem;
+    border-top: 1px solid rgba(223, 183, 108, 0.08);
+    background: linear-gradient(to bottom, transparent, rgba(13, 19, 38, 0.3));
+    position: relative;
+}
+
+.footer-content .dancing-font {
+    font-size: 3rem;
+    color: var(--gold-metallic);
+    margin-bottom: 0.8rem;
+    text-shadow: 0 0 10px rgba(223, 183, 108, 0.2);
+}
+
+.footer-sub {
+    color: var(--text-muted);
+    font-size: 0.95rem;
+    letter-spacing: 1px;
+    font-weight: 300;
+}
+
+/* ==========================================================================
+   ANIMACIONES ESTRUCTURALES (KEYFRAMES)
+   ========================================================================== */
+@keyframes smoothFadeInDown {
+    from {
+        opacity: 0;
+        transform: translateY(-40px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes floatingBounce {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-12px); }
+}
+
+@keyframes subtlePulse {
+    0%, 100% { filter: drop-shadow(0 0 8px #ef4444); }
+    50% { filter: drop-shadow(0 0 18px #ef4444); transform: scale(1.03); }
+}
+
+/* ==========================================================================
+   DISEÑO ADAPTABLE COMPLETO (MEDIA QUERIES)
+   ========================================================================== */
+@media (max-width: 1024px) {
+    .container { padding: 5rem 2rem; }
+    .grid-two { grid-template-columns: 1fr; gap: 3rem; }
+    .place-card:hover { transform: translateY(-4px); }
+}
+
+@media (max-width: 768px) {
+    .main-story { padding: 2.5rem; }
+    .timeline::after { left: 31px; }
+    .timeline-item { width: 100%; padding-left: 65px; padding-right: 15px; }
+    .timeline-item.right { left: 0; }
+    .timeline-item::after { left: 18px; }
+    .timeline-item.right::after { left: 18px; }
+    .spotify-wrapper { padding: 2rem 1.5rem; }
+    .gallery-grid { grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem; }
+    .gallery-item { height: 360px; }
+}
